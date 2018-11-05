@@ -10,6 +10,8 @@ x = min_val:step:max_val;
 y = min_val:step:max_val;
 
 i = 1;
+figure;
+colormap gray;
 for k=min_val:step:max_val
     disp(k);
     [U, S, V] = svd(A);
@@ -18,10 +20,12 @@ for k=min_val:step:max_val
     S_k(k+1:m,k+1:n) = 0;
     A_k = U*S_k*V';
     imagesc(A_k);
-    y(i) = relative_error(A,k);
+    y(i) = relative_error_svd(A,k);
     i = i+1;
     pause(dt);
 end
 
+figure;
 semilogy(x,y);
+
 end
